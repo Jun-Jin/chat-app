@@ -56,3 +56,5 @@ func (h *websocketHandler) Handle(w http.ResponseWriter, r *http.Request) {
 	go client.Write()
 	h.hub.RegisterCh <- client
 }
+
+// curl -i -N -H "Connection: keep-alive, Upgrade" -H "Upgrade: websocket" -H "Sec-WebSocket-Version: 13" -H "Sec-WebSocket-Extensions: deflate-stream" -H "Sec-WebSocket-Key: WIY4slX50bnnSF1GaedKhg==" -H "Host: localhost:8080" -H "Origin:http://localhost:8080" http://localhost:8080/ws
