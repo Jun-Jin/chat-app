@@ -1,0 +1,14 @@
+# This is the service that will be exposed to the outside world
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat-app-service
+spec:
+  selector:
+    app: chat-app-server
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
+

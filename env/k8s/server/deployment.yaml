@@ -1,0 +1,23 @@
+# Create a deployment file of "chat-app-server" with 1 replica
+# Use image: "chat-app-server:1.0.0"
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-app-server-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat-app-server
+  template:
+    metadata:
+      labels:
+        app: chat-app-server
+    spec:
+      containers:
+        - name: chat-app-server
+          image: chat-app-server:0.0.1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
