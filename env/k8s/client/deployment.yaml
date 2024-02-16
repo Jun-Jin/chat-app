@@ -1,0 +1,29 @@
+# Create a deployment file of "chat-app-client" with 1 replica
+# Use image: "chat-app-client:1.0.0"
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-app-client-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat-app-client
+  template:
+    metadata:
+      labels:
+        app: chat-app-client
+    spec:
+      containers:
+        - name: chat-app-client
+          image: chat-app-client:0.0.1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
+          env:
+            - name: REACT_APP_API_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: api-config
+                  key: api_url
